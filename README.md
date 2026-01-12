@@ -1,17 +1,17 @@
 # Donema (动了么)
 
-A minimalist maintenance tracker for iOS with a rhythm.
-极简、克制、高端的节奏打卡工具。
+**Minimalist Rhythm Tracker / 极简节奏打卡**
 
-## Features
-- **Minimalist Design:** Only one button matters.
-- **Rhythm Feedback:** Haptic checks, heartbeat animations, and particle bursts.
-- **Privacy First:** No data collection. Everything stays on your device.
+Donema is a high-end, minimalist utility app designed to help you keep track of maintenance tasks.
+Donema 是一款极简、高端的记录工具，帮你保持生活的节奏。
 
-## Links
-- [Privacy Policy](privacy.html)
-- [Terms of Use](terms.html)
-- [Support](support.html)
+## 🌍 Download / 下载
+[Download on the App Store](#) (Link coming soon)
+
+## 📄 Legal & Support / 法律与支持
+- [Privacy Policy / 隐私政策](https://let5sne.github.io/donema-ios/privacy.html)
+- [Terms of Use / 使用条款](https://let5sne.github.io/donema-ios/terms.html)
+- [Support / 技术支持](https://let5sne.github.io/donema-ios/support.html)
 
 ---
-Contact: let5sne@gmail.com
+**Contact:** let5sne@gmail.com
