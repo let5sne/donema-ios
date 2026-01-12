@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Donema</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+            background: #121212;
+            color: rgba(255,255,255,0.9);
+            line-height: 1.7;
+            padding: 40px 20px;
+        }
+        .container { max-width: 800px; margin: 0 auto; }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .back-link {
+            color: #FF4500;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+        .lang-selector {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 8px;
+            padding: 8px 12px;
+            color: #fff;
+            font-size: 0.85rem;
+            cursor: pointer;
+        }
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            color: #FF4500;
+        }
+        .last-updated {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+        }
+        h2 {
+            font-size: 1.3rem;
+            margin: 30px 0 15px;
+            color: #FF6B35;
+        }
+        p, li {
+            color: rgba(255,255,255,0.75);
+            margin-bottom: 15px;
+        }
+        ul { padding-left: 25px; }
+        .contact-box {
+            background: rgba(255,69,0,0.1);
+            border: 1px solid rgba(255,69,0,0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 30px 0;
+        }
+        .contact-box a {
+            color: #FF4500;
+            text-decoration: none;
+        }
+        .contact-box a:hover { text-decoration: underline; }
+        footer {
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: rgba(255,255,255,0.4);
+            font-size: 0.85rem;
+        }
+        [dir="rtl"] { direction: rtl; text-align: right; }
+        [dir="rtl"] ul { padding-left: 0; padding-right: 25px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back-link" id="backLink">← Back to Home</a>
+            <select class="lang-selector" id="langSelector" onchange="changeLanguage(this.value)">
+                <option value="en">English</option>
+                <option value="zh-Hans">简体中文</option>
+                <option value="zh-Hant">繁體中文</option>
+                <option value="ja">日本語</option>
+                <option value="ko">한국어</option>
+                <option value="es">Español</option>
+                <option value="fr">Français</option>
+                <option value="ar">العربية</option>
+                <option value="pt-BR">Português</option>
+            </select>
+        </div>
+
+        <h1 id="pageTitle">Privacy Policy</h1>
+        <p class="last-updated" id="lastUpdated">Last updated: January 2025</p>
+
+        <p id="intro">Donema ("we", "our", or "us") is committed to protecting your privacy. This Privacy Policy explains how we handle your information when you use our mobile application.</p>
+
+        <h2 id="h2Collect">Information We Collect</h2>
+        <p id="collectText">Donema is designed with privacy in mind. We collect minimal data:</p>
+        <ul>
+            <li id="li1"><strong>Local Data Only:</strong> All your check-in history and settings are stored locally on your device using UserDefaults.</li>
+            <li id="li2"><strong>No Account Required:</strong> We do not require you to create an account or provide personal information.</li>
+            <li id="li3"><strong>No Analytics:</strong> We do not use third-party analytics or tracking services.</li>
+        </ul>
+
+        <h2 id="h2Share">Information Sharing</h2>
+        <p id="shareText">We do not sell, trade, or transfer your data to third parties. Since all data is stored locally on your device, we have no access to it.</p>
+
+        <h2 id="h2Notifications">Notifications</h2>
+        <p id="notifText">If you enable notifications, they are scheduled locally on your device. No notification data is sent to external servers.</p>
+
+        <h2 id="h2Changes">Changes to This Policy</h2>
+        <p id="changesText">We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new policy on this page.</p>
+
+        <div class="contact-box">
+            <h2 id="h2Contact">Contact Us</h2>
+            <p id="contactText">If you have any questions about this Privacy Policy, please contact us at:</p>
+            <p><a href="mailto:let5sne@gmail.com">let5sne@gmail.com</a></p>
+        </div>
+
+        <footer>
+            <p>© 2025 Donema. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        const translations = {
+            'en': {
+                backLink: '← Back to Home',
+                pageTitle: 'Privacy Policy',
+                lastUpdated: 'Last updated: January 2025',
+                h2Contact: 'Contact Us',
+                contactText: 'If you have any questions about this Privacy Policy, please contact us at:'
+            },
+            'zh-Hans': {
+                backLink: '← 返回首页',
+                pageTitle: '隐私政策',
+                lastUpdated: '最后更新：2025年1月',
+                h2Contact: '联系我们',
+                contactText: '如果您对本隐私政策有任何疑问，请通过以下方式联系我们：'
+            },
+            'zh-Hant': {
+                backLink: '← 返回首頁',
+                pageTitle: '隱私政策',
+                lastUpdated: '最後更新：2025年1月',
+                h2Contact: '聯繫我們',
+                contactText: '如果您對本隱私政策有任何疑問，請通過以下方式聯繫我們：'
+            },
+            'ja': {
+                backLink: '← ホームに戻る',
+                pageTitle: 'プライバシーポリシー',
+                lastUpdated: '最終更新：2025年1月',
+                h2Contact: 'お問い合わせ',
+                contactText: 'このプライバシーポリシーについてご質問がある場合は、以下までご連絡ください：'
+            },
+            'ko': {
+                backLink: '← 홈으로 돌아가기',
+                pageTitle: '개인정보 처리방침',
+                lastUpdated: '최종 업데이트: 2025년 1월',
+                h2Contact: '문의하기',
+                contactText: '이 개인정보 처리방침에 대해 질문이 있으시면 다음으로 연락해 주세요:'
+            },
+            'es': {
+                backLink: '← Volver al Inicio',
+                pageTitle: 'Política de Privacidad',
+                lastUpdated: 'Última actualización: Enero 2025',
+                h2Contact: 'Contáctenos',
+                contactText: 'Si tiene alguna pregunta sobre esta Política de Privacidad, contáctenos en:'
+            },
+            'fr': {
+                backLink: '← Retour à l\'Accueil',
+                pageTitle: 'Politique de Confidentialité',
+                lastUpdated: 'Dernière mise à jour : Janvier 2025',
+                h2Contact: 'Nous Contacter',
+                contactText: 'Si vous avez des questions concernant cette Politique de Confidentialité, contactez-nous à :'
+            },
+            'ar': {
+                backLink: '→ العودة للرئيسية',
+                pageTitle: 'سياسة الخصوصية',
+                lastUpdated: 'آخر تحديث: يناير 2025',
+                h2Contact: 'اتصل بنا',
+                contactText: 'إذا كان لديك أي أسئلة حول سياسة الخصوصية هذه، يرجى الاتصال بنا على:'
+            },
+            'pt-BR': {
+                backLink: '← Voltar ao Início',
+                pageTitle: 'Política de Privacidade',
+                lastUpdated: 'Última atualização: Janeiro 2025',
+                h2Contact: 'Contate-nos',
+                contactText: 'Se você tiver alguma dúvida sobre esta Política de Privacidade, entre em contato conosco em:'
+            }
+        };
+
+        function applyTranslations(lang) {
+            const t = translations[lang] || translations['en'];
+            document.getElementById('backLink').textContent = t.backLink;
+            document.getElementById('pageTitle').textContent = t.pageTitle;
+            document.getElementById('lastUpdated').textContent = t.lastUpdated;
+            document.getElementById('h2Contact').textContent = t.h2Contact;
+            document.getElementById('contactText').textContent = t.contactText;
+            document.body.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+            document.getElementById('langSelector').value = lang;
+            document.title = t.pageTitle + ' - Donema';
+        }
+
+        function changeLanguage(lang) {
+            localStorage.setItem('donema-lang', lang);
+            applyTranslations(lang);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedLang = localStorage.getItem('donema-lang') || 'en';
+            applyTranslations(savedLang);
+        });
+    </script>
+</body>
+</html>

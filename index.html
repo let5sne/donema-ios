@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donema - Have you moved?</title>
+    <meta name="description" content="Donema - A minimalist maintenance tracker with living UI. Keep the rhythm of your daily habits.">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Rounded', 'Segoe UI', Roboto, sans-serif;
+            background: #121212;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 600px;
+        }
+
+        .app-icon {
+            width: 180px;
+            height: 180px;
+            border-radius: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 60px rgba(255, 69, 0, 0.3);
+        }
+
+        .title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #FF6B35, #FF4500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: #fff;
+            color: #000;
+            padding: 16px 32px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+        }
+
+        .download-btn svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .feature {
+            padding: 20px;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .feature-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #FF4500;
+        }
+
+        .feature-desc {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        footer {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: #FF4500;
+        }
+
+        .copyright {
+            margin-top: 20px;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.8rem;
+        }
+
+        .lang-selector {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            padding: 8px 12px;
+            color: #fff;
+            font-size: 0.85rem;
+            cursor: pointer;
+        }
+
+        .lang-selector:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        @media (max-width: 600px) {
+            .title { font-size: 2.5rem; }
+            .subtitle { font-size: 1.1rem; }
+            .features { grid-template-columns: 1fr; gap: 20px; }
+            .app-icon { width: 140px; height: 140px; }
+        }
+
+        /* RTL Support for Arabic */
+        [dir="rtl"] {
+            direction: rtl;
+        }
+    </style>
+</head>
+<body>
+    <select class="lang-selector" id="langSelector" onchange="changeLanguage(this.value)">
+        <option value="en">English</option>
+        <option value="zh-Hans">简体中文</option>
+        <option value="zh-Hant">繁體中文</option>
+        <option value="ja">日本語</option>
+        <option value="ko">한국어</option>
+        <option value="es">Español</option>
+        <option value="fr">Français</option>
+        <option value="ar">العربية</option>
+        <option value="pt-BR">Português</option>
+    </select>
+
+    <div class="container">
+        <img src="icon.png" alt="Donema App Icon" class="app-icon">
+
+        <h1 class="title" id="appTitle">Donema</h1>
+        <p class="subtitle" id="appSubtitle">Have you moved? Keep the rhythm.</p>
+
+        <a href="https://apps.apple.com/app/donema" class="download-btn" id="downloadBtn">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+            </svg>
+            <span id="downloadText">Download on the App Store</span>
+        </a>
+
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">🔥</div>
+                <div class="feature-title" id="feat1Title">Living Button</div>
+                <div class="feature-desc" id="feat1Desc">Pulsing heartbeat animation reminds you when it's time</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">📊</div>
+                <div class="feature-title" id="feat2Title">Streak Tracking</div>
+                <div class="feature-desc" id="feat2Desc">Build momentum with consecutive check-ins</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🌍</div>
+                <div class="feature-title" id="feat3Title">9 Languages</div>
+                <div class="feature-desc" id="feat3Desc">Fully localized for global users</div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-links">
+                <a href="privacy.html" id="linkPrivacy">Privacy Policy</a>
+                <a href="terms.html" id="linkTerms">Terms of Use</a>
+                <a href="support.html" id="linkSupport">Support</a>
+            </div>
+            <p class="copyright">© 2025 Donema. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        const translations = {
+            'en': {
+                appTitle: 'Donema',
+                appSubtitle: 'Have you moved? Keep the rhythm.',
+                downloadText: 'Download on the App Store',
+                feat1Title: 'Living Button',
+                feat1Desc: 'Pulsing heartbeat animation reminds you when it\'s time',
+                feat2Title: 'Streak Tracking',
+                feat2Desc: 'Build momentum with consecutive check-ins',
+                feat3Title: '9 Languages',
+                feat3Desc: 'Fully localized for global users',
+                linkPrivacy: 'Privacy Policy',
+                linkTerms: 'Terms of Use',
+                linkSupport: 'Support'
+            },
+            'zh-Hans': {
+                appTitle: '动了么',
+                appSubtitle: '今天，做了么？保持节奏。',
+                downloadText: '在 App Store 下载',
+                feat1Title: '会呼吸的按钮',
+                feat1Desc: '脉动心跳动画提醒你该行动了',
+                feat2Title: '连续追踪',
+                feat2Desc: '通过连续签到建立动力',
+                feat3Title: '9种语言',
+                feat3Desc: '为全球用户完全本地化',
+                linkPrivacy: '隐私政策',
+                linkTerms: '使用条款',
+                linkSupport: '支持'
+            },
+            'zh-Hant': {
+                appTitle: '動了嗎',
+                appSubtitle: '今天，做了沒？保持節奏。',
+                downloadText: '在 App Store 下載',
+                feat1Title: '會呼吸的按鈕',
+                feat1Desc: '脈動心跳動畫提醒你該行動了',
+                feat2Title: '連續追蹤',
+                feat2Desc: '通過連續簽到建立動力',
+                feat3Title: '9種語言',
+                feat3Desc: '為全球用戶完全本地化',
+                linkPrivacy: '隱私政策',
+                linkTerms: '使用條款',
+                linkSupport: '支援'
+            },
+            'ja': {
+                appTitle: 'Donema',
+                appSubtitle: '動きましたか？リズムを保ちましょう。',
+                downloadText: 'App Store でダウンロード',
+                feat1Title: '生きているボタン',
+                feat1Desc: '鼓動アニメーションが時間を知らせます',
+                feat2Title: '連続記録',
+                feat2Desc: '連続チェックインで勢いをつけよう',
+                feat3Title: '9言語対応',
+                feat3Desc: 'グローバルユーザー向けに完全ローカライズ',
+                linkPrivacy: 'プライバシーポリシー',
+                linkTerms: '利用規約',
+                linkSupport: 'サポート'
+            },
+            'ko': {
+                appTitle: 'Donema',
+                appSubtitle: '움직였나요? 리듬을 유지하세요.',
+                downloadText: 'App Store에서 다운로드',
+                feat1Title: '살아있는 버튼',
+                feat1Desc: '심장 박동 애니메이션이 시간을 알려줍니다',
+                feat2Title: '연속 기록',
+                feat2Desc: '연속 체크인으로 동력을 쌓으세요',
+                feat3Title: '9개 언어',
+                feat3Desc: '전 세계 사용자를 위한 완전 현지화',
+                linkPrivacy: '개인정보 처리방침',
+                linkTerms: '이용약관',
+                linkSupport: '지원'
+            },
+            'es': {
+                appTitle: 'Donema',
+                appSubtitle: '¿Te has movido? Mantén el ritmo.',
+                downloadText: 'Descargar en App Store',
+                feat1Title: 'Botón Viviente',
+                feat1Desc: 'Animación de latido que te recuerda cuándo es hora',
+                feat2Title: 'Seguimiento de Racha',
+                feat2Desc: 'Construye impulso con registros consecutivos',
+                feat3Title: '9 Idiomas',
+                feat3Desc: 'Totalmente localizado para usuarios globales',
+                linkPrivacy: 'Política de Privacidad',
+                linkTerms: 'Términos de Uso',
+                linkSupport: 'Soporte'
+            },
+            'fr': {
+                appTitle: 'Donema',
+                appSubtitle: 'As-tu bougé ? Garde le rythme.',
+                downloadText: 'Télécharger sur l\'App Store',
+                feat1Title: 'Bouton Vivant',
+                feat1Desc: 'Animation de battement qui te rappelle quand c\'est l\'heure',
+                feat2Title: 'Suivi de Série',
+                feat2Desc: 'Construis ton élan avec des enregistrements consécutifs',
+                feat3Title: '9 Langues',
+                feat3Desc: 'Entièrement localisé pour les utilisateurs du monde entier',
+                linkPrivacy: 'Politique de Confidentialité',
+                linkTerms: 'Conditions d\'Utilisation',
+                linkSupport: 'Support'
+            },
+            'ar': {
+                appTitle: 'Donema',
+                appSubtitle: 'هل تحركت؟ حافظ على الإيقاع.',
+                downloadText: 'تحميل من App Store',
+                feat1Title: 'زر حي',
+                feat1Desc: 'رسوم متحركة نابضة تذكرك عندما يحين الوقت',
+                feat2Title: 'تتبع السلسلة',
+                feat2Desc: 'ابنِ الزخم مع التسجيلات المتتالية',
+                feat3Title: '9 لغات',
+                feat3Desc: 'مترجم بالكامل للمستخدمين حول العالم',
+                linkPrivacy: 'سياسة الخصوصية',
+                linkTerms: 'شروط الاستخدام',
+                linkSupport: 'الدعم'
+            },
+            'pt-BR': {
+                appTitle: 'Donema',
+                appSubtitle: 'Você se mexeu? Mantenha o ritmo.',
+                downloadText: 'Baixar na App Store',
+                feat1Title: 'Botão Vivo',
+                feat1Desc: 'Animação pulsante que lembra quando é hora',
+                feat2Title: 'Rastreamento de Sequência',
+                feat2Desc: 'Construa impulso com registros consecutivos',
+                feat3Title: '9 Idiomas',
+                feat3Desc: 'Totalmente localizado para usuários globais',
+                linkPrivacy: 'Política de Privacidade',
+                linkTerms: 'Termos de Uso',
+                linkSupport: 'Suporte'
+            }
+        };
+
+        function detectLanguage() {
+            const navLang = navigator.language || navigator.userLanguage;
+            if (navLang.startsWith('zh-Hans') || navLang === 'zh-CN') return 'zh-Hans';
+            if (navLang.startsWith('zh-Hant') || navLang === 'zh-TW' || navLang === 'zh-HK') return 'zh-Hant';
+            if (navLang.startsWith('zh')) return 'zh-Hans';
+            if (navLang.startsWith('ja')) return 'ja';
+            if (navLang.startsWith('ko')) return 'ko';
+            if (navLang.startsWith('es')) return 'es';
+            if (navLang.startsWith('fr')) return 'fr';
+            if (navLang.startsWith('ar')) return 'ar';
+            if (navLang.startsWith('pt')) return 'pt-BR';
+            return 'en';
+        }
+
+        function applyTranslations(lang) {
+            const t = translations[lang] || translations['en'];
+
+            document.getElementById('appTitle').textContent = t.appTitle;
+            document.getElementById('appSubtitle').textContent = t.appSubtitle;
+            document.getElementById('downloadText').textContent = t.downloadText;
+            document.getElementById('feat1Title').textContent = t.feat1Title;
+            document.getElementById('feat1Desc').textContent = t.feat1Desc;
+            document.getElementById('feat2Title').textContent = t.feat2Title;
+            document.getElementById('feat2Desc').textContent = t.feat2Desc;
+            document.getElementById('feat3Title').textContent = t.feat3Title;
+            document.getElementById('feat3Desc').textContent = t.feat3Desc;
+            document.getElementById('linkPrivacy').textContent = t.linkPrivacy;
+            document.getElementById('linkTerms').textContent = t.linkTerms;
+            document.getElementById('linkSupport').textContent = t.linkSupport;
+
+            // RTL support for Arabic
+            document.body.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+
+            // Update selector
+            document.getElementById('langSelector').value = lang;
+
+            // Update page title
+            document.title = t.appTitle + ' - ' + t.appSubtitle.split('.')[0];
+        }
+
+        function changeLanguage(lang) {
+            localStorage.setItem('donema-lang', lang);
+            applyTranslations(lang);
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedLang = localStorage.getItem('donema-lang');
+            const lang = savedLang || detectLanguage();
+            applyTranslations(lang);
+        });
+    </script>
+</body>
+</html>
