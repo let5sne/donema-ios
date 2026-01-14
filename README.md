@@ -1,4 +1,4 @@
-# Donema (动了么)
+# Donema
 
 <p align="center">
   <img src="icon.png" width="120" height="120" alt="Donema App Icon">
